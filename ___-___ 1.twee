@@ -1,0 +1,394 @@
+:: StoryTitle
+逛夜市-龍介版 1
+
+
+:: StoryData
+{
+  "ifid": "e45a18bd-bff9-4c42-a529-a401f32cf2f0",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "zoom": 1
+}
+
+
+:: CheckEnding {"position":"700,1600","size":"100,100"}
+(if: $Dad >= 2 and $Dad >= $Bro and $Dad >= $Friend)[(goto: "EndingDad")]
+(else-if: $self is 1)[(goto: "Endingself")]
+(else-if: $Bro > $Friendn and $Bro >= 2)[(goto: "EndingBro")]
+(else-if: $Friend > $Bro and $Friend >= 2)[(goto: "EndingFriend")]
+(else:)[(goto: "Endingself")]
+
+
+:: EndingBro {"position":"150,150","size":"100,100"}
+(display: "TaskResult")
+---
+(text-colour:green)[【向哥哥學習結局】]
+三年後，可欣已經開始工作了。
+她每天上班，下班後也會休息。
+
+生活很規律，
+她慢慢習慣這樣的日子。
+
+有時，她還是會想念學生時代，
+但她知道，這是她自己的選擇。
+---
+(display: "ScoreSummary")
+
+
+:: EndingDad {"position":"150,25","size":"100,100"}
+(display: "TaskResult")
+---
+(text-colour:green)[【向爸爸學習結局】]
+三年後，可欣在爸爸的補習班工作。
+每天要學很多新的事情。
+
+有時候很累，
+有時候也覺得很有成就感。
+
+她發現，
+當老闆並不容易，但很特別。
+---
+(display: "ScoreSummary")
+
+
+:: EndingFriend {"position":"150,275","size":"100,100"}
+(display: "TaskResult")
+---
+(text-colour:green)[【和可欣一起學習結局】]
+三年後，可欣正在念研究所。
+她每天讀書、寫報告。
+
+生活很忙，
+但她學到很多新的知識。
+
+她知道這條路不簡單，
+但她不後悔。
+---
+(display: "ScoreSummary")
+
+
+:: Endingself {"position":"150,400","size":"100,100"}
+(display: "TaskResult")
+---
+(text-colour:green)[【不知道怎麼辦的人生】]
+三年後，可欣還在找方向。
+她試過不同的工作，也想過很多事。
+
+有時她會著急，
+有時她也會慢慢想。
+
+她相信，
+答案不一定要馬上找到。
+---
+(display: "ScoreSummary")
+
+
+:: GraChoice {"position":"700,1200","size":"100,100"}
+大學快要畢業了。
+可欣開始認真想以後的生活。
+
+她問自己：
+「我畢業後，要做什麼工作呢？」
+
+* [[當哥哥的助理！->GraChoiceBro]]
+* [[向爸爸學習當公司老闆！->GraChoiceDad]]
+* [[和美心一起上研究所！->GraChoiceKexin]]
+* [[再想想，太困難了，選不了！->GraChoiceSelf]]
+
+
+
+:: GraChoiceBro {"position":"400,1400","size":"100,100"}
+(set: $Bro to $Bro + 1)
+
+可欣選擇先工作。
+她想從實際經驗開始學習。
+
+[[三年後的可欣......->CheckEnding]]
+
+
+:: GraChoiceDad {"position":"600,1400","size":"100,100"}
+(set: $Dad to $Dad + 1)
+
+可欣決定跟爸爸學做生意。
+她想試試不一樣的生活。
+
+[[三年後的可欣......->CheckEnding]]
+
+
+:: GraChoiceKexin {"position":"800,1400","size":"100,100"}
+(set: $Friend to $Friend + 1)
+
+可欣決定繼續念書。
+她想把日語學得更好。
+
+[[三年後的可欣......->CheckEnding]]
+
+
+:: GraChoiceSelf {"position":"1000,1400","size":"100,100"}
+(set: $self to $self + 1)
+可欣還沒準備好做決定。
+她決定再想一想。
+
+[[三年後的可欣......->CheckEnding]]
+
+
+:: MidChoice {"position":"600,900","size":"100,100"}
+可欣知道自己對日語很有興趣。
+美心常常對她說：「妳成績很好，可以念研究所。」
+
+哥哥是日語老師，他也對可欣說：
+「妳可以先工作，學教學經驗。」
+
+爸爸也告訴她：
+「如果妳想當老闆，可以跟我學。」
+
+有一天，她看到房間裡的三本書--
+
+* [[《如何當上大老闆》應該是爸爸給我的書。->MidReadDad]]
+* [[《小職員的生活哲學》應該是哥哥放在這的書。->MidReadBro]]
+* [[《外語學院專業介紹：日語所》應該是可欣送我的書。->MidReadKexin]]
+
+
+
+:: MidReadBro {"position":"600,1100","size":"100,100"}
+(set: $Bro to $Bro + 1)
+
+三本書都太厚了。
+說真的，除了學習日語，她什麼科目都不喜歡。她讀不了那麼多，所以只選了一本。
+
+她想了一下，
+最後選了一本來看。
+
+從那天起，她常常讀這本書。
+
+這本書介紹上班的生活。
+每天工作，也要好好休息。
+
+可欣一邊看，一邊想：
+「這樣的生活，好像很真實。」
+
+[[後來，可欣就要畢業了。->GraChoice]]
+
+
+:: MidReadDad {"position":"300,1025","size":"100,100"}
+(set: $Dad to $Dad + 1)
+
+三本書都太厚了。
+說真的，除了學習日語，她什麼科目都不喜歡。她讀不了那麼多，所以只選了一本。
+
+她想了一下，
+最後選了一本來看。
+
+從那天起，她常常讀這本書。
+
+這本書介紹大老闆的工作，
+可欣越來越知道爸爸當大老闆的感覺。
+
+[[後來，可欣就要畢業了。->GraChoice]]
+
+
+:: MidReadKexin {"position":"900,1000","size":"100,100"}
+(set: $Friend to $Friend + 1)
+
+三本書都太厚了。
+說真的，除了學習日語，她什麼科目都不喜歡。她讀不了那麼多，所以只選了一本。
+
+她想了一下，
+最後選了一本來看。
+
+從那天起，她常常讀這本書。
+
+這本書介紹研究所的課程。
+要讀很多書，也要寫報告。
+
+可欣覺得不容易，
+但也覺得很有意思。
+
+[[後來，可欣就要畢業了。->GraChoice]]
+
+
+:: ScoreSummary {"position":"275,25","size":"100,100"}
+**今晚的分數總結：**
+
+**向爸爸學習：** (print: $Dad)  
+(if: $Dad >= 2)[
+你常常想爸爸的做法，  
+也學著自己做決定。
+]\
+(else-if: $Dad is 1)[
+你有聽爸爸的話，  
+但還在想要不要照做。
+]\
+(else:)[
+你很少想到爸爸，  
+對他的做法不熟。
+]
+
+**向哥哥學習：** (print: $Bro)  
+(if: $Bro >= 2)[
+你學哥哥的生活方式，  
+喜歡穩定的日子。
+]\
+(else-if: $Bro is 1)[
+你知道哥哥怎麼工作，  
+但沒有多想。
+]\
+(else:)[
+你沒有注意哥哥的生活，  
+也沒有學他。
+]
+
+
+**和美欣一起學習：** (print: $Friend)  
+(if: $Friend >= 2)[
+你常和美心一起念書，  
+開始想讀研究所。
+]\
+(else-if: $Friend is 1)[
+你有聊過念書的事，  
+還在考慮中。
+]\
+(else:)[
+你很少想到學業，  
+沒有特別計畫。
+]
+
+
+---
+
+如果你想看看別的可能，  
+可以[[重新開始這個人生->Start]]。
+
+
+:: Start {"position":"700,0","size":"100,100"}
+\:: Start
+(set: $Dad to 0)(set: $Bro to 0)(set: $Friend to 0)(set: $self to 0)(set: $goal to "")
+
+龍介是大一的新生，主修日語。  
+他剛進大學，對很多事情還不熟。
+
+白天上課，晚上有時會去逛夜市。  
+他覺得生活很忙，但也有點有趣。
+
+有時，他也會想：  
+「我以後會過什麼樣的生活呢？」
+
+龍介現在的想法是？
+* [[我要成為像爸爸一樣，能自己做決定的人。->StartGoalDad]]
+* [[我要成為像哥哥一樣，生活穩定的人。->StartGoalBro]]
+* [[我要成為繼續念書、學很多東西的人。->StartGoalFriend]]
+
+
+
+:: StartGoalBro {"position":"600,300","size":"100,100"}
+(set: $goal to "Bro")        <!-- 新增 -->
+(set: $Bro to $Bro + 1)
+
+可欣想到哥哥。
+哥哥每天上班，生活很穩定。
+
+可欣心想：
+「這樣的生活，好像比較安心。」
+
+[[我別想那麼多了！先好好念書吧！->Study]]
+
+
+:: StartGoalDad {"position":"800,300","size":"100,100"}
+(set: $goal to "Dad")        <!-- 新增 -->
+(set: $Dad to $Dad + 1)
+
+可欣想到爸爸。
+爸爸是一間補習班的老闆，每天都很忙。
+
+可欣心想：
+「如果我也像爸爸一樣，一定很厲害吧。」
+
+[[我別想那麼多了！到底要找什麼工作，等大四再說吧！->Study]]
+
+
+
+
+:: StartGoalFriend {"position":"400,300","size":"100,100"}
+(set: $goal to "Friend")        <!-- 新增 -->
+(set: $Friend to $Friend + 1)
+
+可欣想到美心。
+美心很喜歡念書，也很努力。
+
+可欣心想：
+「如果我也能一直念書，應該不錯。」
+
+[[現在想這些也沒用，先努力吧！->Study]]
+
+
+:: Study {"position":"600,500","size":"100,100"}
+今天下午，可欣要準備日語作業。
+她拿出書和筆，想找一個地方念書。
+
+她心裡想：
+「我今天要去哪裡念書呢？」
+
+* [[我想在客廳念書，爸爸會提醒我。->StudyLivingRoom]]
+* [[我想在自己的房間念書，比較安靜。->StudySelfRoom]]
+* [[我想去學校念書，和朋友一起。->StudySchool]]
+
+
+:: StudyLivingRoom {"position":"600,700","size":"100,100"}
+(set: $Dad to $Dad + 1)
+
+可欣決定在客廳念書，爸爸常常在旁邊提醒她要專心。
+爸爸是一間補習班的老闆，有時候，他們會聊聊爸爸的工作。
+
+一開始她有點緊張，
+但也慢慢習慣了這樣的環境。
+
+[[升上大三......->MidChoice]]
+
+
+:: StudySchool {"position":"400,700","size":"100,100"}
+(set: $Friend to $Friend + 1)
+
+可欣決定去學校念書。
+她和朋友一起討論功課。
+
+有時聊天太多，
+有時也能學到新的想法。
+
+[[升上大三......->MidChoice]]
+
+
+:: StudySelfRoom {"position":"800,700","size":"100,100"}
+(set: $Bro to $Bro + 1)
+
+可欣選擇在自己的房間念書。
+房間很安靜，也很舒服。
+
+她累了的時候，會去旁邊哥哥的房間和他聊天，
+哥哥會告訴她工作裡有趣的事，可欣放鬆以後，再努力回房間把書看完。
+
+[[升上大三......->MidChoice]]
+
+
+:: TaskResult {"position":"25,25","size":"100,100"}
+(text-colour:orange)[**任務結果：**]
+
+(if: $goal is "Dad")[
+你一開始的目標是：**(text-colour:magenta)[成為像爸爸一樣的大老闆]**。\
+(if: $self is 1)[''最後妳在畢業時沒能選擇夢想''，**(text-colour:magenta)[任務失敗]**。]\
+(else-if: $Dad > $Bro and $Dad > $Friend)[最後妳向爸爸學習的次數是三個裡面最高，**(text-colour:magenta)[任務成功]**。]\
+(else:)[最後妳向爸爸學習的次數不是最高，**(text-colour:red)[任務失敗]**。]
+]
+
+(if: $goal is "Bro")[
+你一開始的目標是：**(text-colour:magenta)[成為像哥哥一樣的小職員]**。\
+(if: $self is 1)[''最後妳在畢業時沒能選擇夢想''，**(text-colour:magenta)[任務失敗]**。]\
+(else-if: $Bro > $Dad and $Bro > $Friend)[最後妳向哥哥學習的次數最高，**(text-colour:magenta)[任務成功]**。]\
+(else:)[最後妳向哥哥學習的次數不是最高，**(text-colour:red)[任務失敗]**。]
+]
+
+(if: $goal is "Friend")[
+你一開始的目標是：**(text-colour:magenta)[成為像可欣一樣的研究生]**。\
+(if: $self is 1)[''最後妳在畢業時沒能選擇夢想''，**(text-colour:magenta)[任務失敗]**。]\
+(else-if: $Friend > $Dad and $Friend > $Bro)[最後妳和可欣一起學習的次數最高，**(text-colour:magenta)[任務成功]**。]\
+(else:)[最後妳和可欣一起學習的次數不是最高，**(text-colour:red)[任務失敗]**。]
+]

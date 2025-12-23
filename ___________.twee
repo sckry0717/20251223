@@ -1,0 +1,358 @@
+:: StoryTitle
+龍介的未來（可欣架構）
+
+
+:: StoryData
+{
+  "ifid": "CF703CC6-3936-4D8A-A40D-EDD490266A40",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "Start",
+  "zoom": 1
+}
+
+
+:: CheckEnding {"position":"700,1600","size":"100,100"}
+(if: $Dad >= 2 and $Dad >= $Bro and $Dad >= $Friend)[(goto: "EndingDad")]
+(else-if: $self is 1)[(goto: "Endingself")]
+(else-if: $Bro > $Friend and $Bro >= 2)[(goto: "EndingBro")]
+(else-if: $Friend > $Bro and $Friend >= 2)[(goto: "EndingFriend")]
+(else:)[(goto: "Endingself")]
+
+
+:: EndingBro {"position":"150,150","size":"100,100"}
+(display: "TaskResult")
+---
+(text-colour:green)[【先工作，累積經驗】]
+三年後，龍介已經開始工作了。  
+他每天上班，下班後也會休息。
+
+生活很規律，  
+他慢慢習慣這樣的日子。
+
+有時，他還是會想念學生時代，  
+但他知道，這是他自己的選擇。
+---
+(display: "ScoreSummary")
+
+
+:: EndingDad {"position":"150,25","size":"100,100"}
+(display: "TaskResult")
+---
+(text-colour:green)[【和家人一起試試新的方向】]
+三年後，龍介和家人一起做事。  
+他每天要學很多新的事情。
+
+有時候很累，  
+但他覺得自己變得更會承擔。
+
+他發現：  
+做決定不容易，但很真實。
+---
+(display: "ScoreSummary")
+
+
+:: EndingFriend {"position":"150,275","size":"100,100"}
+(display: "TaskResult")
+---
+(text-colour:green)[【留下來繼續學習】]
+三年後，龍介正在念研究所。  
+他每天讀書、寫報告。
+
+生活很忙，  
+但他學到很多新的知識。
+
+他知道這條路不簡單，  
+但他不後悔。
+---
+(display: "ScoreSummary")
+
+
+:: Endingself {"position":"150,400","size":"100,100"}
+(display: "TaskResult")
+---
+(text-colour:green)[【先慢慢看看的人生】]
+三年後，龍介還在找方向。  
+他試過不同的事，也想過很多。
+
+有時他會著急，  
+有時他也會慢慢想。
+
+他相信：  
+答案不一定要馬上找到。
+---
+(display: "ScoreSummary")
+
+
+:: GraChoice {"position":"700,1200","size":"100,100"}
+畢業前，龍介開始整理自己的生活。  
+他回想這幾年的學校生活，也看看身邊的人。
+
+他想為接下來的一段時間，  
+做一個選擇。
+
+* [[先找一個地方累積經驗。->GraChoiceBro]]
+* [[跟家人一起試試新的方向。->GraChoiceDad]]
+* [[留下來繼續學習。->GraChoiceKexin]]
+* [[先什麼都不選，慢慢看看。->GraChoiceSelf]]
+
+
+:: GraChoiceBro {"position":"400,1400","size":"100,100"}
+(set: $Bro to $Bro + 1)
+
+龍介選擇先工作。  
+他想從實際經驗開始學習。
+
+[[三年後的龍介......->CheckEnding]]
+
+
+:: GraChoiceDad {"position":"600,1400","size":"100,100"}
+(set: $Dad to $Dad + 1)
+
+龍介決定跟家人一起試試新的方向。  
+他想學著承擔責任。
+
+[[三年後的龍介......->CheckEnding]]
+
+
+:: GraChoiceKexin {"position":"800,1400","size":"100,100"}
+(set: $Friend to $Friend + 1)
+
+龍介決定繼續學習。  
+他想把日語學得更好。
+
+[[三年後的龍介......->CheckEnding]]
+
+
+:: GraChoiceSelf {"position":"1000,1400","size":"100,100"}
+(set: $self to $self + 1)
+
+龍介還沒準備好做決定。  
+他決定再想一想。
+
+[[三年後的龍介......->CheckEnding]]
+
+
+:: MidChoice {"position":"600,900","size":"100,100"}
+升上大三後，要開始選課了。  
+龍介看著課表，有點猶豫。
+
+不同的課，看起來都不一樣。
+
+* [[創業實務與案例分享。->MidReadDad]]
+* [[職場溝通與辦公室文化。->MidReadBro]]
+* [[研究方法與學術寫作。->MidReadKexin]]
+
+
+:: MidReadBro {"position":"600,1100","size":"100,100"}
+(set: $Bro to $Bro + 1)
+
+龍介選了「職場溝通與辦公室文化」。  
+這門課介紹公司裡的工作方式。
+
+怎麼合作、怎麼溝通，  
+講得很清楚。
+
+龍介覺得內容很實用，  
+也比較容易想像。
+
+[[時間很快過去......->GraChoice]]
+
+
+:: MidReadDad {"position":"300,1025","size":"100,100"}
+(set: $Dad to $Dad + 1)
+
+龍介選了「創業實務與案例分享」。  
+這門課常常請外面的人來分享經驗。
+
+他們談工作，也談做決定。  
+龍介一邊聽，一邊想：  
+「生活好像有很多可能。」
+
+[[時間很快過去......->GraChoice]]
+
+
+:: MidReadKexin {"position":"900,1000","size":"100,100"}
+(set: $Friend to $Friend + 1)
+
+龍介選了「研究方法與學術寫作」。  
+這門課要讀文章，也要寫報告。
+
+老師常常問問題。  
+龍介一開始不太習慣，  
+但慢慢學會怎麼思考。
+
+[[時間很快過去......->GraChoice]]
+
+
+:: ScoreSummary {"position":"275,25","size":"100,100"}
+**這次的分數總結：**
+
+**偏向家人／責任：** (print: $Dad)  
+(if: $Dad >= 2)[
+你常常把重心放在家裡，  
+也慢慢學著承擔。
+]\
+(else-if: $Dad is 1)[
+你偶爾會想到家人，  
+但還不確定要不要跟著走。
+]\
+(else:)[
+你很少往家裡那條路靠近。
+]
+
+**偏向工作／穩定：** (print: $Bro)  
+(if: $Bro >= 2)[
+你喜歡比較穩的生活，  
+一步一步往前走。
+]\
+(else-if: $Bro is 1)[
+你知道職場大概是什麼樣子，  
+但沒有多想。
+]\
+(else:)[
+你沒有特別往工作那邊靠近。
+]
+
+**偏向學習／研究：** (print: $Friend)  
+(if: $Friend >= 2)[
+你常常待在學習的狀態，  
+也開始想繼續念書。
+]\
+(else-if: $Friend is 1)[
+你有想過念書的事，  
+還在考慮中。
+]\
+(else:)[
+你很少把時間放在學習上。
+]
+
+---
+
+如果你想看看別的可能，  
+可以[[重新開始這個人生->Start]]。
+
+
+:: Start {"position":"700,0","size":"100,100"}
+(set: $Dad to 0)(set: $Bro to 0)(set: $Friend to 0)(set: $self to 0)(set: $goal to "")
+
+龍介是大學生。  
+這學期的課很多，他每天都很忙。  
+
+他對未來沒有太多想法，  
+只希望這個學期可以順利過完。
+
+* [[這學期好忙，我只想先撐過去。->StartGoalPass]]
+* [[我有點迷惘，但也不想太早決定。->StartGoalWait]]
+* [[大家都在規劃，我有點緊張。->StartGoalFollow]]
+
+
+:: StartGoalFollow {"position":"800,300","size":"100,100"}
+(set: $goal to "Dad")
+
+
+龍介看到身邊的同學都在規劃未來。  
+有人想工作，有人想念研究所。
+
+他有點緊張，  
+也想看看別人怎麼選。
+
+[[先看看大家怎麼做。->Study]]
+
+
+:: StartGoalPass {"position":"600,300","size":"100,100"}
+(set: $goal to "Bro")
+
+龍介覺得現在最重要的是把事情做好。  
+工作、報告、考試，一件一件來。
+
+他告訴自己：  
+「先不要想太遠。」
+
+[[算了，先把今天的事做好。->Study]]
+
+
+:: StartGoalWait {"position":"400,300","size":"100,100"}
+(set: $goal to "Friend")
+
+
+龍介不知道自己適合什麼。  
+他不想現在就做決定。
+
+他心想：  
+「再看看吧，時間還很多。」
+
+[[今天先別想太多。->Study]]
+
+
+:: Study {"position":"600,500","size":"100,100"}
+今天有一段空檔時間。  
+龍介想想，決定做點事情。
+
+他問自己：  
+「我現在要去哪裡呢？」
+
+* [[去圖書館坐一下。->StudyLibrary]]
+* [[去系館找同學。->StudyDept]]
+* [[回家休息。->StudyHome]]
+
+
+:: StudyDept {"position":"800,700","size":"100,100"}
+(set: $Bro to $Bro + 1)
+
+龍介到系館找同學。  
+大家聊功課，也聊生活。
+
+他覺得有人一起討論，  
+心情比較輕鬆。
+
+[[升上大三......->MidChoice]]
+
+
+:: StudyHome {"position":"400,700","size":"100,100"}
+(set: $Dad to $Dad + 1)
+
+龍介回到家裡。  
+他休息一下，也整理房間。
+
+雖然沒有念很多書，  
+但精神好了不少。
+
+[[升上大三......->MidChoice]]
+
+
+:: StudyLibrary {"position":"600,700","size":"100,100"}
+(set: $Friend to $Friend + 1)
+
+龍介去了圖書館。  
+那裡很安靜，很多人在念書。
+
+他坐了一會兒，  
+也翻了幾頁書。
+
+[[升上大三......->MidChoice]]
+
+
+:: TaskResult {"position":"25,25","size":"100,100"}
+(text-colour:orange)[**任務結果：**]
+
+(if: $goal is "Dad")[
+你一開始的狀態是：**(text-colour:magenta)[很緊張，想跟上大家]**。\
+(if: $self is 1)[''最後你在畢業時沒能選擇''，**(text-colour:magenta)[任務失敗]**。]\
+(else-if: $Dad > $Bro and $Dad > $Friend)[你最後更常往「家人／責任」那條路走，**(text-colour:magenta)[任務成功]**。]\
+(else:)[你最後走向了別的方向，**(text-colour:red)[任務失敗]**。]
+]
+
+(if: $goal is "Bro")[
+你一開始的狀態是：**(text-colour:magenta)[只想先撐過去]**。\
+(if: $self is 1)[''最後你在畢業時沒能選擇''，**(text-colour:magenta)[任務失敗]**。]\
+(else-if: $Bro > $Dad and $Bro > $Friend)[你最後更常往「工作／穩定」那條路走，**(text-colour:magenta)[任務成功]**。]\
+(else:)[你最後走向了別的方向，**(text-colour:red)[任務失敗]**。]
+]
+
+(if: $goal is "Friend")[
+你一開始的狀態是：**(text-colour:magenta)[想先觀察，不急著決定]**。\
+(if: $self is 1)[''最後你在畢業時沒能選擇''，**(text-colour:magenta)[任務失敗]**。]\
+(else-if: $Friend > $Dad and $Friend > $Bro)[你最後更常往「學習／研究」那條路走，**(text-colour:magenta)[任務成功]**。]\
+(else:)[你最後走向了別的方向，**(text-colour:red)[任務失敗]**。]
+]
