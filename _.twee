@@ -1,0 +1,736 @@
+:: StoryTitle
+總
+
+
+:: StoryData
+{
+  "ifid": "2D0874E3-83F2-42EF-A4E3-C8F177C095F7",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "START",
+  "zoom": 1
+}
+
+
+:: CheckEnding {"position":"900,2100","size":"100,100"}
+(if: $research >= 4 and $research >= $work and $research >= $happy)[(goto: "Endingresearch")]
+(else-if: $work > $research and $work >= 3)[(goto: "Endingwork")]
+(else-if: $happy > $work and $happy >= 2)[(goto: "Endinghappy")]
+(else:)[(goto: "EndingNormal")]
+
+
+:: DiscussBrother {"position":"900,1325","size":"100,100"}
+(set: $work to $work + 1)
+
+美心在咖啡厅找到了哥哥。
+
+因为很久不见，美心高兴地像哥哥挥手。
+
+美心：「你从英国回来了！留学有趣吗？」
+
+哥哥：「有趣是有趣，但留学不像上班这麽轻松......天天说外语太累了！」
+
+美心：「难怪你不念书了！我最近也在想，毕业后要上班还是念书......」
+
+哥哥：「美心的专业也是外语吧！你可以做贸易公司的翻译，或者义文老师呀！」
+
+
+[[听完之后，美心想了想。->MidChoice]]
+
+
+:: DiscussFriends {"position":"1025,1325","size":"100,100"}
+(set: $happy to $happy + 1)
+
+可欣转过头。
+
+美心：「毕业之后你想做什麽？」
+
+可欣听了之后叹了一口气。
+
+可欣：「我也不知道......听说有些念广告或是服装设计的学长姊，还没毕业就当老闆了！」
+
+美心：「好厉害喔！不过，我觉得兴趣也很重要，如果工作太无聊，我一定会想换工作。」
+
+可欣：「唉，研究所的课程又多又难，我也读不了！」
+
+美心听完，开玩笑地说：「说真的！除了睡觉，我什麽都不想做！」
+
+两个人哈哈大笑。
+
+
+[[聊完之后，美心想了想。->MidChoice]]
+
+
+:: DiscussTeacher {"position":"775,1325","size":"100,100"}
+(set: $research to $research + 1)
+
+美心在研究室找到了老师。
+
+老师：「喔！美心！这学期妳除了翻译课成绩比较差，听力和绘画课的成绩都不错喔！」
+
+美心听了开心地说：「谢谢老师！我还没决定上研究所还是上班，想问问老师的想法。」
+
+老师：「想当教授可以唸研究所，念了研究所，毕业后应该不难找工作。」
+
+说完，老师转过头，拿起一份研究资料，「美心，这份义文paper比较困难，有空可以看看。」
+
+[[「我最近很累，就不看了，谢谢老师。」->MidChoice]]
+
+[[「太好了！我一定看完！谢谢老师。」->MidChoice＋１]]
+
+
+:: EndingNormal {"position":"800,2300","size":"100,100"}
+(display: "TaskResult")
+(text-colour:green)[【学会坚持才会成功】]
+
+美心过了平凡的一生。
+
+她念过书，也做过工作，
+但没有一直做同一件事。
+
+她的生活很稳定，
+没有大成功，也没有大失败。
+
+有时，她会想：
+「如果当时再努力一点，人生会不会不一样？」
+
+不过，想做什么就做什么真的蛮开心的。
+
+(display: "ScoreSummary")
+
+
+:: Endingresearch {"position":"600,2300","size":"100,100"}
+(display: "TaskResult")
+(text-colour:green)[【书中自有黄金屋】]
+
+
+美心选择一直念书。
+
+研究所的生活很辛苦，
+她常常熬夜，看很多书。
+
+后来，她成为老师，
+每天和学生一起学习。
+
+她发现，
+努力念书，真的改变了她的人生。
+
+(display: "ScoreSummary")
+
+
+:: LifeChoice {"position":"900,1800","size":"100,100"}
+两年过去了......
+
+要坚持自己现在的想法吗？还是换一种生活呢？
+
+* [[念书吧！->LifeChoiceResearch]]
+* [[工作吧！->LifeChoiceNormal]]
+* [[当老闆吧！->LifeChoiceWork]]
+* [[休息吧！->LifeChoiceHappy]]
+
+
+:: LifeChoiceHappy {"position":"1087.5,1925","size":"100,100"}
+(if: $happy >= 3)[又过了一年，美心没钱了。
+她打电话给可欣，但可欣没接电话，听说她开了间公司，当上了大老闆。
+
+「可欣应该不想跟我说话了吧......」
+
+最后，(text-colour:red)[美心饿死了]。
+]\
+(else-if: $happy <= 2)[又过了一年，美心没钱了。
+她决定打电话给可欣。
+可欣:「美心！妳毕业以后，就不像大学时那麽认真了。妳早就应该工作了！」
+可欣骂了美心，生气地说：「妳下星期再打给我吧！」
+(text-style:"bold","smear","fade-in-out")[(after: 2s)[
+	[[还没走？奇蹟降临！
+->还没走？奇蹟降临！]]
+]
+]]\
+
+
+
+[[美心过了什麽样的人生？->CheckEnding]]
+
+
+
+:: LifeChoiceNormal {"position":"837.5,1925","size":"100,100"}
+(if: $work >= 3)[美心工作非常认真，虽然(text-colour:red)[没有成为老闆的勇气]，但生活的不错。她的学生都喜欢向她学习。]\
+(else-if: $work is 2)[美心(text-colour:red)[一生都做着普通的工作]。她发现，一生简简单单的当一个小职员，也可以过的很幸福。]\
+(else:)[美心很幸运，有间补习班通知她去上班。
+但......美心除了会念义大利文，什麽工作都不会做。
+(text-colour:red)[两天后就被开除了]。]
+
+
+[[看看这几年，美心过了什麽样的人生？->CheckEnding]]
+
+
+:: LifeChoiceResearch {"position":"712.5,1925","size":"100,100"}
+(if: $research is 6)[考试时，老师两年前给的那篇paper帮了大忙，美心出国念书，研究义大利文，因为比任何人都努力，(text-colour:red)[成为了着名的教授]。]\
+(if: $research is 5)[美心出国念书，研究义大利文，(text-colour:red)[成为了普通的教授]。
+如果再认真一点儿，说不定能够出名呢！]\
+(if: $research is 4)[美心出国念书，研究义大利文，(text-colour:red)[成为了普通的教授]。
+如果再认真一点儿，说不定能够出名呢！]\
+(else-if: $research is 3)[好像是决心不够，(text-colour:red)[美心没能成为教授]，但她成为了一位厉害的研究生。]\
+(else-if: $research is 2)[好像是决心不够，(text-colour:red)[美心没能成为教授]，但她成为了一位不错的研究生。]\
+
+(else-if: $research <= 1)[美心的考试没过，(text-colour:red)[没办法上研究所]，所有的考试题目都太困难了。]\
+
+
+[[看看这几年，美心过了什麽样的人生？->CheckEnding]]
+
+
+:: LifeChoiceWork {"position":"962.5,1925","size":"100,100"}
+(set: $brave to $brave + 1)
+(if: $work >= 3)[美心除了星期日，其他日子都工作十二个小时。
+因为这样的努力，过了两年，她(text-colour:red)[成功当上了大老闆]。]\
+(else:)[美心向哥哥借了钱，开了一间补习班。
+
+可是，因为工作经验不多，两个月后，(text-colour:red)[公司倒闭了]。
+
+当大老闆真的好困难！]
+
+
+
+[[看看这几年，美心过了什麽样的人生？->CheckEnding]]
+
+
+:: MidChoice {"position":"900,1500","size":"100,100"}
+回到家，美心一个人坐在电脑前。
+ &nbsp;&nbsp;
+    &nbsp;&nbsp;
+萤幕上，
+
+一边是(text-colour:lime)[(text-style:"bold","buoy")[研究所的通知]]，
+
+一边是成为(text-colour:cyan)[(text-style:"bold","buoy")[义文老师的邀请]]。
+  &nbsp;&nbsp;
+  &nbsp;&nbsp;
+    &nbsp;&nbsp;
+''(text-style:"smear")[就这样亮在她的眼前－－]
+
+''
+* [[「我要读研究所！」->MidChoiceResearch]]
+* [[「我要当义文老师！」->MidChoiceWork]]
+* [[「我不知道！把电脑关起来！」->MidChoiceHappy]]
+
+
+:: MidChoiceHappy {"position":"1025,1625","size":"100,100"}
+(set: $happy to $happy + 1)
+
+美心的生活开心的不得了，从毕业那天起，她就天天旅行。
+
+因为对艺术和文化很有兴趣，有时候她也画一点画，但不专业，赚不了钱。
+
+她听说可欣现在是一位日语老师，不但常常开会、加班，还要做教学研究，可欣的生活不像她的这麽轻松。
+
+[[经过两年......->LifeChoice]]
+
+
+:: MidChoiceResearch {"position":"775,1625","size":"100,100"}
+(set: $research to $research + 1)
+
+研究义大利文不像念哲学、历史那麽难，
+可是没有其他专业能力，想找到好工作也是很困难。
+
+「......希望读了研究所，比较好找工作。」美心叹气。
+
+但她又想了想，对自己说:「不对！美心！妳想当教授！这个梦想是忘不了的！加油！」
+
+
+[[我要更努力！->Tired]]
+[[今天先休息吧！->LifeChoice]]
+
+
+:: MidChoiceWork {"position":"900,1625","size":"100,100"}
+(set: $work to $work + 1)
+
+台湾只有一、两所大学的外语有义大利文系，找到义文老师的工作不困难。
+
+但因为没有读研究所，美心只能当一个小职员，工作是和学生练习义文的听力和会话。
+
+她的学生不多，又得常常加班，薪水也不高。
+
+可是她的学生很喜欢她，她也觉得很开心。
+
+
+[[经过两年......->LifeChoice]]
+
+
+:: MidChoice＋１ {"position":"575,1400","size":"100,100"}
+(set: $research to $research + 1)
+(set: $hardworking to $hardworking -1)
+
+美心读完了研究paper，她觉得研究所不像大学那麽容易。
+
+她感觉自己更专业了！但有点儿累。
+
+[[我得决定要做什麽了！->MidChoice]]
+
+
+:: START {"position":"900,400","size":"100,100"}
+欢迎来到学习系统
+让我们一起来学习今天的主题：小职员?大老闆!
+
+
+<span style="font-size: 18px;">(text-colour:grey)[//本教材内容节选并改编自【时代华语第二册】（辅仁大学华语文中心）仅供教学与学习使用。//]</span>
+
+
+
+想知道课程目标可以按(link:"这里")[(goto:"课程目标")]
+
+
+
+
+
+
+
+:: ScoreSummary {"position":"1400,1700","size":"100,100"}
+---
+(text-colour:yellow)[**今晚的分数总结：**]
+
+**学习兴趣：** (print: $research)  
+(if: $research >= 4)[学习是你的乐趣！]\
+(else-if: $research is 3)[妳对学习有点儿兴趣，但也想做点别的事。]\
+(else-if: $research is 2)[妳以前念了点书，就这样。]\
+(else-if: $research <= 1)[妳对学习一点儿兴趣也没有。]\
+&nbsp;&nbsp;
+&nbsp;&nbsp;
+**工作赚钱：** (print: $work)  
+(if: $work >= 3)[妳热爱工作，也喜欢钱钱，发家致富。]\
+(else-if: $work is 2)[对于工作，妳觉得「活得下去就好」，坚持自己喜欢的事比较重要。]\
+(else:)[妳没有什麽工作经验，坚持喜欢的事物的妳非常勇敢！]
+&nbsp;&nbsp;
+**快乐人生：** (print: $happy)  
+(if: $happy >= 3)[妳比谁都在乎快乐，可能上辈子过的很累，太厉害了。]\
+(else-if: $research is 1 and $happy >=2)[再怎麽喜欢快乐，都还是得读点书......]\
+(else-if: $work is 1 and $happy >= 2)[再怎麽喜欢快乐，都还是得做点事......]
+(else:)[要做事就不能休息，人生啊！]
+
+---
+
+如果你想看看别的可能，  
+可以[[重新开始这个人生->課文一]]。
+
+
+:: StartGoalHappy {"position":"1025,1025","size":"100,100"}
+(set: $goal to "happy")        <!-- 新增 -->
+(set: $happy to $happy + 1)
+
+「我想要什麽都不做！」美心
+
+  &nbsp;&nbsp;从今天起，美心的梦想就是(text-colour:yellow)[马上退休]。
+
+
+  &nbsp;&nbsp;可是，说真的，她有一点害怕。
+  &nbsp;&nbsp;她决定要去问问别人......
+  &nbsp;&nbsp;
+&nbsp;&nbsp;
+&nbsp;&nbsp;[[走吧！->discuss]]
+
+
+:: StartGoalResearch {"position":"775,1025","size":"100,100"}
+(set: $goal to "research")       <!-- 新增 -->
+(set: $research to $research + 1)
+
+「我想要成为一个义大利文教授！」
+
+  &nbsp;&nbsp;从今天起，美心的梦想就是(text-colour:yellow)[去外语学院当教授]。
+
+
+  &nbsp;&nbsp;可是，说真的，当教授可能不像她想的那麽简单。
+  &nbsp;&nbsp;她决定要去问问别人......
+  &nbsp;&nbsp;
+&nbsp;&nbsp;
+&nbsp;&nbsp;[[走吧！->discuss]]
+
+
+:: StartGoalWork {"position":"900,1025","size":"100,100"}
+(set: $goal to "work")         <!-- 新增 -->
+(set: $work to $work + 1)
+
+「我想要成为一个大老闆！」
+
+  &nbsp;&nbsp;从今天起，美心的梦想就是(text-colour:yellow)[当大老闆管理公司]。
+
+
+  &nbsp;&nbsp;可是，说真的，当大老闆可能不像她想的那麽简单。
+  &nbsp;&nbsp;她决定要去问问别人......
+  &nbsp;&nbsp;
+&nbsp;&nbsp;
+&nbsp;&nbsp;[[走吧！->discuss]]
+
+
+:: TaskResult {"position":"1300,2200","size":"100,100"}
+(text-colour:orange)[**任务结果：**]
+---
+(if: $goal is "research")[
+你一开始的目标是：**(text-colour:magenta)[成为教授]**。\
+(if: $research > $work and $research > $happy and $research >= 4)[最后，你成为了教授，恭喜你，**(text-colour:magenta)[任务成功]**。]
+(else-if: $research > $work and $research > $happy)[最后，虽然你还是研究生，但一定有机会成为教授的！**(text-colour:red)[任务失败]**。]
+(else:)[你根本不想念书吧！**(text-colour:red)[任务失败]**。]
+]
+
+(if: $goal is "work")[
+你一开始的目标是：**(text-colour:magenta)[成为大老闆]**。\
+(if: $work >= 3 and $brave is 1)[最后你成为了大老闆，**(text-colour:magenta)[任务成功]**。]\
+(else-if: $work > $research and $work > $happy)[虽然你还是小职员，但一定有机会成为大老闆的！**(text-colour:red)[任务失败]**。]\
+(else:)[好吧，工作对你来说太困难了，**(text-colour:red)[任务失败]**。]]
+
+(if: $goal is "happy")[
+你一开始的目标是：**(text-colour:magenta)[什麽都不做]**。\
+(if: $happy > $research and $happy > $work)[最后你真的很懒惰，**(text-colour:magenta)[任务成功]**。]\
+(else:)[最后你努力了，**(text-colour:red)[任务失败]**。]
+]
+
+---
+
+
+:: Tired {"position":"600,1700","size":"100,100"}
+
+
+
+:: UI-Nav {"position":"600,375","size":"100,100"}
+<div class="navbar">(link: "课程目标")[(goto:"课程目标")] • (link: "认识生词")[(goto:"认识生词")] • (link:"游戏首页")[(goto:"选游戏")] </div>
+
+
+:: Untitled Passage 2 {"position":"1000,2300","size":"100,100"}
+
+
+
+:: Untitled Passage 3 {"position":"1200,2300","size":"100,100"}
+
+
+
+:: discuss {"position":"900,1200","size":"100,100"}
+美心认识的人不多，她想到......
+  &nbsp;&nbsp;
+    &nbsp;&nbsp;
+(text-colour:cyan)[向老师学习]，老师在研究室，她最熟悉研究所。
+(text-colour:lime)[向哥哥请教]，哥哥在咖啡厅，他是一间保险公司老闆的助理。
+(text-colour:orange)[和可欣讨论]，可欣坐在我旁边，她是我最好的朋友。
+  &nbsp;&nbsp;
+    &nbsp;&nbsp;
+要问谁呢？
+
+* [[走去找老师->DiscussTeacher]]
+* [[骑车去找哥哥->DiscussBrother]]
+* [[叫一下可欣->DiscussFriends]]
+
+
+:: 兑奖...... {"position":"1200,2100","size":"100,100"}
+你看了看发票。
+
+(你手上的发票号码是：(text-colour:red)[40852099])
+
+(after: 2s)[(text-colour:grey)[你打开中奖号码网页......]]
+
+(after: 3s)[//【发票兑奖网站】//]
+
+(after: 4s)[//【特别奖号码】//]
+
+(text-style:"bold","smear")[(after: 5s)[<span class="fadeIn">[4]</span>]
+(after: 5.5s)[<span class="fadeIn">[0]</span>]
+(after: 6s)[<span class="fadeIn">[8]</span>]
+(after: 7s)[<span class="fadeIn">[5]</span>]
+(after: 8s)[<span class="fadeIn">[2]</span>]
+(after: 9.5s)[<span class="fadeIn">[0]</span>]
+(after: 11s)[<span class="fadeIn">[9]</span>]]
+
+(after: 12.5s)[(text-style:"bold")[1]]
+
+(after: 13s)[[[没中！乖乖接受结局吧！->CheckEnding]]]
+
+
+:: 游戏一 {"position":"400,600","size":"100,100"}
+(display:"UI-Nav")
+
+<iframe 
+  src="https://yyyy-n.github.io/20251202-matching/" 
+  width="120%" 
+  height="1000" 
+  style="border:0.5px solid #ccc;">
+</iframe>
+
+
+:: 游戏三 {"position":"300,700","size":"100,100"}
+(display:"UI-Nav")
+
+<iframe 
+  src="https://yyyy-n.github.io/20251202-matching/" 
+  width="120%" 
+  height="1000" 
+  style="border:0.5px solid #ccc;">
+</iframe>
+
+
+:: 游戏二 {"position":"500,600","size":"100,100"}
+(display:"UI-Nav")
+
+<iframe 
+  src="https://yyyy-n.github.io/20251202-matching/" 
+  width="120%" 
+  height="1000" 
+  style="border:0.5px solid #ccc;">
+</iframe>
+
+
+:: 游戏五 {"position":"500,700","size":"100,100"}
+(display:"UI-Nav")
+
+<iframe 
+  src="https://yyyy-n.github.io/20251202-matching/" 
+  width="120%" 
+  height="1000" 
+  style="border:0.5px solid #ccc;">
+</iframe>
+
+
+:: 游戏四 {"position":"400,700","size":"100,100"}
+(display:"UI-Nav")
+
+<iframe 
+  src="https://yyyy-n.github.io/20251202-matching/" 
+  width="120%" 
+  height="1000" 
+  style="border:0.5px solid #ccc;">
+</iframe>
+
+
+:: 課文一 {"position":"900,900","size":"100,100"}
+(text-colour:red)[(text-style:"bold")[【任务选择】]]
+大学经过四年，美心终于要毕业了，她在学校的主修是义大利文。
+除了自己，身边的朋友都找到了自己想做的事。
+
+现在，你是美心。
+美心想要什麽样的人生呢?
+
+
+* [[成为教授->StartGoalResearch]]
+* [[成为大老闆->StartGoalWork]]
+* [[什麽都不做->StartGoalHappy]]
+(set: $research to 0)
+(set: $work to 0)
+(set: $happy to 0)
+(set: $brave to 0)
+(set: $goal to "")
+<!-- 新增：記錄玩家一開始選的目標 -->
+
+
+:: 认识生词 {"position":"1100,700","size":"100,100"}
+(display:"UI-Nav")
+
+''生词浏览''
+<div class="grid2">
+(for: each _it, ...$vocab_all)[
+  <div class="card">{(if: _it contains 'img')[
+      <img class="vocab-img" src="(print: _it's 'img')" alt="(print: _it's 'hanzi')">
+    ]}<h3>
+      <span class='hanzi-xl'>(print: _it's 'hanzi')</span>
+      (print: "<span class='hint hint-xl' data-hint='" + (_it's 'pinyin') + "'>ⓘ</span>")
+    </h3>
+    詞性：''(print: _it's 'tag')''<br>
+    意思：''(print: _it's 'def')''<br>
+    
+      ]
+
+
+:: 课程目标 {"position":"800,600","size":"100,100"}
+(display:"UI-Nav")
+
+{
+(set: $lessonID to"小职员?大老闆?")
+
+(set: $vocab_all to (array:
+(datamap:"hanzi","职员","pinyin","zhíyuán","def","staff member; employee","tag","N"),
+(datamap:"hanzi","研究所","pinyin","yánjiūsuǒ","def","graduate school","tag","N"),
+(datamap:"hanzi","研究","pinyin","yánjiū","def","research","tag","V"),
+(datamap:"hanzi","课程","pinyin","kèchéng","def","course; curriculum","tag","N"),
+(datamap:"hanzi","通知","pinyin","tōngzhī","def","to notify; notification","tag","V/N"),
+(datamap:"hanzi","广告","pinyin","guǎnggào","def","advertisement","tag","N"),
+(datamap:"hanzi","设计","pinyin","shèjì","def","to design; design","tag","V/N"),
+(datamap:"hanzi","想法","pinyin","xiǎngfǎ","def","idea; thought","tag","N"),
+(datamap:"hanzi","听力","pinyin","tīnglì","def","listening ability","tag","N"),
+(datamap:"hanzi","会话","pinyin","huìhuà","def","conversation","tag","N"),
+(datamap:"hanzi","所","pinyin","suǒ","def","place; institute; classifier for buildings","tag","N/CL"),
+(datamap:"hanzi","外语","pinyin","wàiyǔ","def","foreign language","tag","N"),
+(datamap:"hanzi","学院","pinyin","xuéyuàn","def","college; institute","tag","N"),
+(datamap:"hanzi","哲学","pinyin","zhéxué","def","philosophy","tag","N"),
+(datamap:"hanzi","专业","pinyin","zhuānyè","def","major; specialty; professional","tag","N/A"),
+(datamap:"hanzi","困难","pinyin","kùnnan","def","difficulty; difficult","tag","N/A"),
+(datamap:"hanzi","职业","pinyin","zhíyè","def","occupation; profession","tag","N"),
+(datamap:"hanzi","起","pinyin","qǐ","def","to begin","tag","V"),
+(datamap:"hanzi","助理","pinyin","zhùlǐ","def","assistant","tag","N"),
+(datamap:"hanzi","向","pinyin","xiàng","def","towards; to; direction","tag","Prep"),
+(datamap:"hanzi","贸易","pinyin","màoyì","def","trade","tag","N"),
+(datamap:"hanzi","保险","pinyin","bǎoxiǎn","def","insurance","tag","N"),
+(datamap:"hanzi","经理","pinyin","jīnglǐ","def","manager","tag","N"),
+(datamap:"hanzi","管理","pinyin","guǎnlǐ","def","to manage; management","tag","V/N"),
+(datamap:"hanzi","员工","pinyin","yuángōng","def","employee","tag","N"),
+(datamap:"hanzi","开会","pinyin","kāihuì","def","to have a meeting","tag","V"),
+(datamap:"hanzi","加班","pinyin","jiābān","def","to work overtime","tag","V"),
+(datamap:"hanzi","研究","pinyin","yánjiū","def","research; to research","tag","N/V"),
+(datamap:"hanzi","难怪","pinyin","nánguài","def","no wonder","tag","Adv"),
+(datamap:"hanzi","退休","pinyin","tuìxiū","def","to retire","tag","V"),
+))
+
+(set: $vocab_education to (array:
+(datamap:"hanzi","研究所","pinyin","yánjiūsuǒ","def","graduate school","tag","N"),
+(datamap:"hanzi","研究","pinyin","yánjiū","def","research","tag","V"),
+(datamap:"hanzi","课程","pinyin","kèchéng","def","course; curriculum","tag","N"),
+(datamap:"hanzi","通知","pinyin","tōngzhī","def","to notify; notification","tag","V/N"),
+(datamap:"hanzi","会话","pinyin","huìhuà","def","conversation","tag","N"),
+(datamap:"hanzi","听力","pinyin","tīnglì","def","listening ability","tag","N"),
+(datamap:"hanzi","外语","pinyin","wàiyǔ","def","foreign language","tag","N"),
+(datamap:"hanzi","学院","pinyin","xuéyuàn","def","college; institute","tag","N"),
+(datamap:"hanzi","哲学","pinyin","zhéxué","def","philosophy","tag","N"),
+(datamap:"hanzi","专业","pinyin","zhuānyè","def","major; specialty; professional","tag","N/A"),
+(datamap:"hanzi","所","pinyin","suǒ","def","place; institute; classifier for buildings","tag","N/CL"),
+))
+
+(set: $vocab_work to (array:
+(datamap:"hanzi","职员","pinyin","zhíyuán","def","staff member; employee","tag","N"),
+(datamap:"hanzi","职业","pinyin","zhíyè","def","occupation; profession","tag","N"),
+(datamap:"hanzi","助理","pinyin","zhùlǐ","def","assistant","tag","N"),
+(datamap:"hanzi","贸易","pinyin","màoyì","def","trade","tag","N"),
+(datamap:"hanzi","保险","pinyin","bǎoxiǎn","def","insurance","tag","N"),
+(datamap:"hanzi","经理","pinyin","jīnglǐ","def","manager","tag","N"),
+(datamap:"hanzi","管理","pinyin","guǎnlǐ","def","to manage; management","tag","V/N"),
+(datamap:"hanzi","员工","pinyin","yuángōng","def","employee","tag","N"),
+(datamap:"hanzi","开会","pinyin","kāihuì","def","to have a meeting","tag","V"),
+(datamap:"hanzi","加班","pinyin","jiābān","def","to work overtime","tag","V"),
+(datamap:"hanzi","退休","pinyin","tuìxiū","def","to retire","tag","V"),
+))
+
+(set: $vocab_abstract to (array:
+(datamap:"hanzi","想法","pinyin","xiǎngfǎ","def","idea; thought","tag","N"),
+(datamap:"hanzi","困难","pinyin","kùnnan","def","difficulty; difficult","tag","N/A"),
+(datamap:"hanzi","向","pinyin","xiàng","def","towards; to; direction","tag","Prep"),
+(datamap:"hanzi","难怪","pinyin","nánguài","def","no wonder","tag","Adv"),
+(datamap:"hanzi","起","pinyin","qǐ","def","to begin","tag","V"),
+))
+
+(set: $vocab_other2 to (array:
+(datamap:"hanzi","广告","pinyin","guǎnggào","def","advertisement","tag","N"),
+(datamap:"hanzi","设计","pinyin","shèjì","def","to design; design","tag","V/N"),
+))
+
+
+(set: $textParas to (array:
+"建置中"
+))
+(set: $progress to (datamap:"vocab",0,"pattern",0,"text",0,"practice",0))
+(set: $score to (datamap:"vocab",0,"pattern",0,"text",0,"practice",0))
+(set: $seenVocab to (dataset:))
+(set: $wrongBank to (dataset:))
+(set: $notes to "")
+
+}
+
+<span style="font-size: 36px;">(text-colour:green)[我们今天要学什麽呢?]</span>
+
+1.介绍毕业之后可以做什麽
+2.学会和朋友聊聊研究所与工作
+
+让我们从[[认识生词]]开始吧! 
+
+
+:: 还没走？奇蹟降临！ {"position":"1300,1900","size":"100,100"}
+(地板上有一张发票)
+
+你知道发票可以做什麽吗？
+
+[[兑奖......]]
+
+
+:: 选游戏 {"position":"300,600","size":"100,100"}
+选一个游戏挑战吧!
+
+(link:"(text-colour:magenta)[等级一]")[(goto:"游戏一")]  
+(link:"(text-colour:magenta)[等级二]")[(goto:"游戏二")]  
+(link:"(text-colour:magenta)[等级三]")[(goto:"游戏三")]  
+(link:"(text-colour:magenta)[等级四]")[(goto:"游戏四")]  
+(link:"(text-colour:magenta)[等级五]")[(goto:"游戏五")]  
+
+單字練習完了嗎？
+
+
+
+:: StoryStylesheet [stylesheet]
+/* --- 生詞卡片樣式 --- */
+.card {
+  border: 1px solid #ccc;
+  padding: 0.5em 1em 1em 1em;
+  margin-bottom: 1em; /* 在 Flexbox 中，這個屬性依然有效 */
+  border-radius: 8px;
+  font-size: 18px;
+  line-height: 1.4;
+  /* (新增) 為了讓 Flexbox 寬度計算更精準 */
+  box-sizing: border-box; 
+}
+
+/* --- 控制大漢字的大小 --- */
+.hanzi-xl {
+  font-size: 1.8rem;
+  line-height: 1;
+  font-weight: 600;
+}
+
+/* --- 移除卡片中標題的預設上方邊距 --- */
+.card h3 {
+  margin-top: 0;
+}
+
+/* --- (已刪除 .grammar-card，為求最簡化) --- */
+
+/* --- 拼音提示 (Tooltip) 樣式 --- */
+.hint {
+  position: relative;
+  cursor: help;
+}
+
+.hint::after {
+  content: attr(data-hint);
+  position: absolute;
+  top: 1.5em;
+  left: -120%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 20px;
+  z-index: 10;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s, visibility 0.2s;
+}
+
+/* 滑鼠滑過 ⓘ 時，顯示提示框 */
+.hint:hover::after {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* --- 【修改】使用 Flexbox 的雙欄佈局 --- */
+.grid2 {
+  display: flex;
+  flex-wrap: wrap; /* 允許項目換行 */
+  gap: 1.5em;      /* 設定間距 */
+}
+/* 為 .grid2 中的卡片設定寬度 */
+.grid2 .card {
+  /* 每個卡片佔據 50% 寬度，再減去一半的間距，達成雙欄效果 */
+  flex-basis: calc(50% - 0.75em);
+  flex-grow: 1;
+}
+
+/* --- 單欄網格佈局 --- */
+.grid1 {
+  display: block; /* 使用簡單的區塊佈局即可 */
+}
+.grid1 .card {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
